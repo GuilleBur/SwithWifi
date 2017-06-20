@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//Put the main fragment...
+//Put the main fragment
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.your_placeholder, new MainFragment())
