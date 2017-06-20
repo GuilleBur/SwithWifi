@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.ar.gab.switchwifi.activity.WifiListActivity">
+    <include layout="@layout/content_wifi_list" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/findSelected2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonTextWifi" />
+        <ListView
+            android:id="@+id/listView2"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="417dp" >
+        </ListView>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

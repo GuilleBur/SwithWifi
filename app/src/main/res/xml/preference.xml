@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="dsds" android:icon="@drawable/ic_sync_black_24dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseekBarPreference="http://myseekBarPreference.com" >
+    <PreferenceCategory
+        android:title="@string/setting"
+        android:layout="@layout/setting_layout">
+            <CheckBoxPreference
+                android:id="@+id/appCheckEnableSeekBar"
+                android:key="@string/setting_enableAppRun_key"
+                android:title="@string/setting_enableAppRun"
+                android:summary="@string/setting_enableAppRun_summary" />
+            <com.ar.gab.switchwifi.activity.MySeekBarPreference
+                android:id="@+id/appCheckSeekBar"
+                android:key="@string/setting_checkAppRun_key"
+                android:title="@string/setting_checkAppRun"
+                android:summary="@string/setting_checkAppRun_summary"
+                android:max="24"
+                android:dependency="@string/setting_enableAppRun_key"
+                myseekBarPreference:unitsLeft=""
+                myseekBarPreference:unitsRight=" hrs."
+                myseekBarPreference:min="1"
+                android:defaultValue="4" />
+
+
+        <com.ar.gab.switchwifi.activity.MySeekBarPreference
+                android:id="@+id/freqCheckWifiSeekBar"
+                android:key="@string/setting_WifiTime_key"
+                android:title="@string/setting_WifiTime"
+                android:summary="@string/setting_WifiTime_summary"
+                android:max="100"
+                myseekBarPreference:unitsLeft=""
+                myseekBarPreference:unitsRight=" sec."
+                myseekBarPreference:min="3"
+                android:defaultValue="7" />
+
+        <com.ar.gab.switchwifi.activity.MySeekBarPreference
+            android:id="@+id/freqCheckInternetSeekBar"
+            android:key="@string/setting_WifiInternetTime_key"
+            android:title="@string/setting_WifiInternetTime"
+            android:summary="@string/setting_WifiInternetTime_summary"
+            android:max="100"
+            myseekBarPreference:unitsLeft=""
+            myseekBarPreference:unitsRight=" sec."
+            myseekBarPreference:min="10"
+            android:defaultValue="15" />
+
+
+
+    </PreferenceCategory>
+</PreferenceScreen>
