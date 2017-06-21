@@ -34,6 +34,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import utils.ServiceUtil;
+
 /**
  * Created by Guille on 5/12/2017.
  */
@@ -79,7 +81,7 @@ public class SwitchWifiService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        showToast("onStartCommand ID: "+startId);
+        ServiceUtil.showToast("onStartCommand ID: "+startId, getApplicationContext());
 
         Context context = getApplicationContext();
         resetTimeCheckWifi();
@@ -96,17 +98,6 @@ public class SwitchWifiService extends Service {
         return START_STICKY;
     }
 
-    protected void showToast(final String msg){
-        //gets the main thread
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                // run this code in the main thread
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     /**
      * Class used for the client Binder.  Because we know this service always
@@ -185,18 +176,6 @@ public class SwitchWifiService extends Service {
                     if (!ssdiCurrent.equals("\"" + sc.SSID + "\"") && sc.level > level) {
                         ssdiConnect = "\"" +sc.SSID+ "\"";
                     }
-                    //check internet connection when isn`t change the wifi connection (due check delay ping)
-                    //isWifiFavorite(ssdiCurrent.replaceAll("\"",""), ssdiListFav)
-
-
-                    /*  --------------------
-                    else if(ssdiConnect.equals("\"" + sc.SSID + "\"") &&  ssdiConnect.equals(ssdiCurrent)  &&  !isConnected2()){
-                         noIternetInFavoriteWifi = true;
-                        showToast("Sorry, NO INTERNET!! on Wifi favorite:" + ssdiCurrent);
-                        //ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-                        //toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 7000); // 1
-                    }
-                    -----------------*/
 
                 }
             }
@@ -208,21 +187,6 @@ public class SwitchWifiService extends Service {
                         //first time connect
                         if (!changeWifiConnect(i, wifiManager)) {
 
-                            /* ------------------
-                            showToast("Sorry connect 1st, NO INTERNET!! on Wifi:" + i.SSID);
-                            wifiManager.setWifiEnabled(false);
-                            try {
-                                Thread.sleep(intTimeToCheck/2);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            wifiManager.setWifiEnabled(true);
-                            //second time connect
-                            if (!changeWifiConnect(i, wifiManager)) {
-                                showToast("Sorry connect 2do, NO INTERNET!! on Wifi:" + i.SSID);
-                            }
-
-                            ------*/
                         }
                         break;
                     }
@@ -281,14 +245,14 @@ public class SwitchWifiService extends Service {
         wifiManager.disconnect();
         wifiManager.enableNetwork(i.networkId, true);
         wifiManager.reconnect();
-        showToast("change wifi to :"+i.SSID);
+        ServiceUtil.showToast("change wifi to :"+i.SSID, getApplicationContext());
         if(isConnected2()){
             WifiNotification wifiNotification =  new WifiNotification();
             wifiNotification.notify(getApplicationContext(), R.drawable.ic_wifi_app_on,
                     getApplicationContext().getString(R.string.wifi_on), i.SSID, 3,
                     getApplicationContext().getString(R.string.action_close), new Intent("com.ar.gab.switchwifi.CloseApp"));
 
-            showToast(i.SSID +" have internet connection!");
+            ServiceUtil.showToast(i.SSID +" have internet connection!", getApplicationContext());
             return true;
         }
         //wifiManager.disconnect();
@@ -371,7 +335,7 @@ public class SwitchWifiService extends Service {
             //showToast(String.valueOf(connected));
         }
         catch (Exception e1) {
-            showToast("No connection for long-time");
+            ServiceUtil.showToast("No connection for long-time", getApplicationContext());
             return false;
         }
         return connected;

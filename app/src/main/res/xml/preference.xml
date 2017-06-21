@@ -10,7 +10,8 @@
                 android:key="@string/setting_enableAppRun_key"
                 android:title="@string/setting_enableAppRun"
                 android:summary="@string/setting_enableAppRun_summary" />
-            <com.ar.gab.switchwifi.activity.MySeekBarPreference
+
+        <com.ar.gab.switchwifi.activity.MySeekBarPreference
                 android:id="@+id/appCheckSeekBar"
                 android:key="@string/setting_checkAppRun_key"
                 android:title="@string/setting_checkAppRun"
@@ -44,6 +45,7 @@
             myseekBarPreference:unitsRight=" sec."
             myseekBarPreference:min="10"
             android:defaultValue="15" />
+
 
 
 

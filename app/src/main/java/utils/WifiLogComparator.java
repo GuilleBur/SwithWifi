@@ -20,8 +20,8 @@ public class WifiLogComparator implements Comparator <String> {
         Date dateA = null;
         Date dateB = null;
         try {
-            dateA = dateFormat.parse(strA.substring(0, strA.indexOf("\"")-1));
-            dateB = dateFormat.parse(strB.substring(0, strB.indexOf("\"")-1));
+            dateA = dateFormat.parse(strA.substring(0, 21));
+            dateB = dateFormat.parse(strB.substring(0, 21));
         } catch (ParseException e) {
             e.printStackTrace();
         }

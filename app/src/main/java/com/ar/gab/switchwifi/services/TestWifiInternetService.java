@@ -30,6 +30,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import utils.ServiceUtil;
+
 /**
  * Created by Guille on 5/12/2017.
  */
@@ -71,7 +73,7 @@ public class TestWifiInternetService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        showToast("onStartCommand TestWifiInternet ID: "+startId);
+        ServiceUtil.showToast("onStartCommand TestWifiInternet ID: "+startId, getApplicationContext());
 
         Context context = getApplicationContext();
         resetTimeInternetWifi();
@@ -88,17 +90,7 @@ public class TestWifiInternetService extends Service {
         return START_STICKY;
     }
 
-    protected void showToast(final String msg){
-        //gets the main thread
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                // run this code in the main thread
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+
 
     /**
      * Class used for the client Binder.  Because we know this service always
@@ -160,7 +152,7 @@ public class TestWifiInternetService extends Service {
 
                     if(ssdiConnect.equals("\"" + sc.SSID + "\"") &&  ssdiConnect.equals(ssdiCurrent)  &&  !isConnected2()){
                         noIternetInFavoriteWifi = true;
-                        showToast("Sorry, NO INTERNET!! on Wifi favorite:" + ssdiCurrent);
+                        ServiceUtil.showToast("Sorry, NO INTERNET!! on Wifi favorite:" + ssdiCurrent, getApplicationContext());
                         //ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
                         //toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 7000); // 1
                     }
@@ -183,7 +175,7 @@ public class TestWifiInternetService extends Service {
                         //second time connect
                         WifiNotification wifiNotification =  new WifiNotification();
                         if (!connectToWifiFav(i, wifiManager)) {
-                            showToast("Sorry retry to connect, but is NOT INTERNET!! on Wifi:" + i.SSID);
+                            ServiceUtil.showToast("Sorry retry to connect, but is NOT INTERNET!! on Wifi:" + i.SSID, getApplicationContext());
                         }
                         break;
                     }
@@ -241,7 +233,7 @@ public class TestWifiInternetService extends Service {
             //showToast(String.valueOf(connected));
         }
         catch (Exception e1) {
-            showToast("No connection for long-time");
+            ServiceUtil.showToast("No connection for long-time", getApplicationContext());
             return false;
         }
         return connected;

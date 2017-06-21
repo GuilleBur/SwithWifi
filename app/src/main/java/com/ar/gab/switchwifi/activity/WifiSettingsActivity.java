@@ -155,25 +155,25 @@ public class WifiSettingsActivity extends PreferenceFragment implements SharedPr
         // TODO Auto-generated method stub
 
 
-        LinearLayout v = //(LinearLayout) container.findViewById(R.id.backButton);
+        LinearLayout v = (LinearLayout) super.onCreateView(inflater, container, savedInstanceState);
 
 
-
-
-                (LinearLayout) super.onCreateView(inflater, container, savedInstanceState);
-
-        Button SendLogbtn = new Button(getActivity().getApplicationContext());
-        SendLogbtn.setText(getString(R.string.setting_backButton));
+        Button backbtn = new Button(getActivity().getApplicationContext());
+        backbtn.setText(getString(R.string.setting_backButton));
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        params.setMargins(100, 0, 0, 500);
-        SendLogbtn.setLayoutParams(params);
+        params.setMargins(800, 0, 0, 10);
+        backbtn.setLayoutParams(params);
 
-        v.addView(SendLogbtn);
 
-        SendLogbtn.setOnClickListener(new View.OnClickListener() {
+
+
+
+        v.addView(backbtn);
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 getFragmentManager().popBackStack();

@@ -20,6 +20,8 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import utils.ServiceUtil;
+
 /**
  * Created by Guille on 5/11/2017.
  */
@@ -100,7 +102,7 @@ public class SwitchWifiIntentService extends IntentService {
                         wifiManager.disconnect();
                         wifiManager.enableNetwork(i.networkId, true);
                         wifiManager.reconnect();
-                        showToast("change wifi to :"+ssdiConnect);
+                        ServiceUtil.showToast("change wifi to :"+ssdiConnect, getApplicationContext());
                         //Toast.makeText(getApplicationContext(),"change wifi to :"+ssdiConnect, Toast.LENGTH_LONG).show();
                         break;
                     }
@@ -118,18 +120,6 @@ public class SwitchWifiIntentService extends IntentService {
             }
         }
         return isWifiFav;
-    }
-
-    protected void showToast(final String msg){
-        //gets the main thread
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                // run this code in the main thread
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 
