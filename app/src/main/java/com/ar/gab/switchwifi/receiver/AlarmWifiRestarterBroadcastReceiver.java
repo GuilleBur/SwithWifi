@@ -27,35 +27,26 @@ public class AlarmWifiRestarterBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         SwitchWifiService mSwitchWifiService = new SwitchWifiService();
-        ActivityManager manager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         boolean closeApp = sharedPref.getBoolean(context.getString(R.string.closeApp), false);
 
         if(!closeApp && !ServiceUtil.isMyServiceRunning(mSwitchWifiService.getClass(), context)){
             ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
             toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 7000); // 1
+
             context.startService(new Intent(context, SwitchWifiService.class));
             context.startService(new Intent(context, TestWifiInternetService.class));
+
         }else if (!closeApp){
             WifiNotification wifiNotification2 =  new WifiNotification();
             Calendar c = Calendar.getInstance();
             wifiNotification2.notify(context, R.drawable.ic_wifi_app_on , context.getString(R.string.wifi_on) +" "+Calendar.HOUR+":"+Calendar.MINUTE
                     ,((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getConnectionInfo().getSSID(),
-                    3, context.getString(R.string.action_close), new Intent("com.ar.gab.switchwifi.CloseApp"));
+                    3, context.getString(R.string.action_close), R.drawable.ic_stop_black_24px, new Intent("com.ar.gab.switchwifi.CloseApp"));
         }
 
 
 
     }
 
-    /*private boolean isMyServiceRunning(Class<?> serviceClass, ActivityManager manager) {
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                Log.i ("isMyServiceRunning?", true+"");
-                return true;
-            }
-        }
-        Log.i ("isMyServiceRunning?", false+"");
-        return false;
-    }*/
 }

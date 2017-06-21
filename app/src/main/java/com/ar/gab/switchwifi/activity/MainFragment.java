@@ -17,11 +17,15 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ar.gab.switchwifi.R;
 import com.ar.gab.switchwifi.receiver.WifiReceiver;
+import com.ar.gab.switchwifi.services.TestWifiInternetService;
 
 import utils.CheckPermission;
 import utils.RunnableWifi;
@@ -34,6 +38,8 @@ import utils.RunnableWifi;
 public class MainFragment extends Fragment {
 
     SwipeRefreshLayout swipeContainer;
+    private TestWifiInternetService mTestWifiInternetService;
+
 
     public MainFragment() {
     }
@@ -102,6 +108,8 @@ public class MainFragment extends Fragment {
 
             }
         });
+
+
 
 
     }

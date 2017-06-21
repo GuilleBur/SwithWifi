@@ -92,7 +92,7 @@ public class SwitchWifiService extends Service {
         WifiNotification wifiNotification =  new WifiNotification();
         wifiNotification.notify(getApplicationContext(), R.drawable.ic_wifi_app_on,
                 getApplicationContext().getString(R.string.wifi_on), wifiInfo.getSSID(), 3,
-                getApplicationContext().getString(R.string.action_close), new Intent("com.ar.gab.switchwifi.CloseApp"));
+                getApplicationContext().getString(R.string.action_close), R.drawable.ic_stop_black_24px, new Intent("com.ar.gab.switchwifi.CloseApp"));
 
 
         return START_STICKY;
@@ -250,7 +250,7 @@ public class SwitchWifiService extends Service {
             WifiNotification wifiNotification =  new WifiNotification();
             wifiNotification.notify(getApplicationContext(), R.drawable.ic_wifi_app_on,
                     getApplicationContext().getString(R.string.wifi_on), i.SSID, 3,
-                    getApplicationContext().getString(R.string.action_close), new Intent("com.ar.gab.switchwifi.CloseApp"));
+                    getApplicationContext().getString(R.string.action_close), R.drawable.ic_stop_black_24px, new Intent("com.ar.gab.switchwifi.CloseApp"));
 
             ServiceUtil.showToast(i.SSID +" have internet connection!", getApplicationContext());
             return true;

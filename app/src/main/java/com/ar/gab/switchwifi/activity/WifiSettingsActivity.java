@@ -168,13 +168,8 @@ public class WifiSettingsActivity extends PreferenceFragment implements SharedPr
         backbtn.setLayoutParams(params);
 
 
-
-
-
         v.addView(backbtn);
-
         backbtn.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 getFragmentManager().popBackStack();
             }

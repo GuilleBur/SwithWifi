@@ -1,7 +1,5 @@
 package com.ar.gab.switchwifi.activity;
 
-import android.app.ActivityManager;
-
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.view.View;
-import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.ar.gab.switchwifi.R;
@@ -36,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Intent mServiceInternetIntent;
     private SwitchWifiService mSwitchWifiService;
     private TestWifiInternetService mTestWifiInternetService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         WifiNotification wifiNotification =  new WifiNotification();
         wifiNotification.notify(getApplicationContext(), R.drawable.ic_wifi_app_on,
                 getApplicationContext().getString(R.string.wifi_on), wifiInfo.getSSID(), 3,
-                getApplicationContext().getString(R.string.action_close), new Intent("com.ar.gab.switchwifi.CloseApp"));
+                getApplicationContext().getString(R.string.action_close), R.drawable.ic_stop_black_24px, new Intent("com.ar.gab.switchwifi.CloseApp"));
 
 
 
@@ -88,19 +87,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
     }
-
-
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+
         return true;
+
     }
 
 

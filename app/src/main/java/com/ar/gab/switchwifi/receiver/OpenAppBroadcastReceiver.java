@@ -38,7 +38,7 @@ public class OpenAppBroadcastReceiver extends BroadcastReceiver {
         WifiNotification wifiNotification2 =  new WifiNotification();
         wifiNotification2.notify(context, R.drawable.ic_wifi_app_on, context.getString(R.string.wifi_on)
                 ,((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getConnectionInfo().getSSID(),
-                3, context.getString(R.string.action_close), new Intent("com.ar.gab.switchwifi.CloseApp"));
+                3, context.getString(R.string.action_close), R.drawable.ic_stop_black_24px, new Intent("com.ar.gab.switchwifi.CloseApp"));
 
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

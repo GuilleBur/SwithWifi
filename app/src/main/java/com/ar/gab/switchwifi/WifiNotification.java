@@ -58,7 +58,7 @@ public class WifiNotification {
      *
      */
     public static void notify(final Context context, final int icon, final String onOrOff,
-                                      final String currentWifiString, final int number, final String openOrCloseButton,
+                                      final String currentWifiString, final int number, final String openOrCloseButton, final int iconOpenOrClose,
                                       final Intent actionIntent ) {
         final Resources res = context.getResources();
 
@@ -66,10 +66,6 @@ public class WifiNotification {
         // TODO: Remove this if your notification has no relevant thumbnail.
         final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.ic_stat_wifi);
 
-        final SpannableStringBuilder exampleItem = new SpannableStringBuilder();
-        exampleItem.append("Dummy");
-        exampleItem.setSpan(new ForegroundColorSpan(Color.WHITE), 0, exampleItem.length(), 0);
-        exampleItem.append("   Example content");
 
         final String ticker = currentWifiString;
         final String title = res.getString(
@@ -137,20 +133,20 @@ public class WifiNotification {
                 // content intent provides access to the same actions in
                 // another way.
                 .addAction(
-                        R.drawable.ic_info_black_24dp,
+                        iconOpenOrClose,
                         openOrCloseButton,
                         PendingIntent.getBroadcast(
                                 context, 2,
                                 actionIntent, PendingIntent.FLAG_UPDATE_CURRENT))
                 .addAction(
-                        R.drawable.ic_action_stat_reply,
+                        R.drawable.ic_sync_black_24dp,
                         res.getString(R.string.action_restart),
                         PendingIntent.getBroadcast(
                                 context, 5,
                                 new Intent("com.ar.gab.switchwifi.RestartApp"), PendingIntent.FLAG_UPDATE_CURRENT))
 
                 .addAction(
-                        R.drawable.ic_sync_black_24dp,
+                        R.drawable.ic_info_black_24dp,
                         res.getString(R.string.action_status),
                         PendingIntent.getBroadcast(
                                 context, 5,
@@ -194,7 +190,6 @@ public class WifiNotification {
             inboxStyle.addLine(listWifiLog.get(i));
         }
         inboxStyle.setBigContentTitle(title);
-        inboxStyle.setSummaryText("Event tracker details:");
         builder.setStyle(inboxStyle);
 
         notify(context, builder.build());
