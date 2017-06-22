@@ -67,7 +67,7 @@ public class MainFragment extends Fragment {
 
         SpannableString spanString = new SpannableString(getString(R.string.selectFavWifi));
         spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
-        textView.setTextSize(16);
+        textView.setTextSize(19);
         textView.setText(spanString);
 
         textView.setText(spanString);
@@ -90,6 +90,7 @@ public class MainFragment extends Fragment {
             }
 
         });
+
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,

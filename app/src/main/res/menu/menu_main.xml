@@ -10,9 +10,14 @@
         app:actionLayout="@layout/show_onoff_switch"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/list_fav_wifi"
         android:orderInCategory="100"
-        android:title="@string/setting"
+        android:title="@string/favWifi"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="100"
+        android:title="@string/about"
         app:showAsAction="never" />
 
 </menu>

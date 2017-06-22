@@ -12,5 +12,6 @@
         android:layout_centerVertical="true"
         android:textOff="@string/wifi_off"
         android:textOn="@string/wifi_on"
+        android:text="@string/wifi_off_on_title"
         />
 </RelativeLayout>

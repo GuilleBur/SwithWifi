@@ -27,6 +27,11 @@ public class Wifi {
         setBssid(bssid);
     }
 
+    public Wifi(String name, boolean check){
+        setName(name);
+        setChecked(check);
+    }
+
 
 
     public String getStrength() {

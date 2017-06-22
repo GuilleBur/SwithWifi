@@ -159,20 +159,18 @@ public class SwitchWifiService extends Service {
             String ssdiConnect = ssdiCurrent;
             Iterator<ScanResult> listIterator = list.iterator();
 
-        //conocer level actual de la wifi
+            //conocer level actual de la wifi
             while (listIterator.hasNext()) {
                 ScanResult sc = listIterator.next();
                 if (ssdiCurrent.equals("\"" + sc.SSID + "\"") && isWifiFavorite(sc.SSID, ssdiListFav)) {
                     level = sc.level;
                 }
-
             }
             //conocer si hay que cambiar por otra wifi
             Iterator<ScanResult> listIterator1 = list.iterator();
             while (listIterator1.hasNext()) {
                 ScanResult sc = listIterator1.next();
                 if (isWifiFavorite(sc.SSID, ssdiListFav)){
-
                     if (!ssdiCurrent.equals("\"" + sc.SSID + "\"") && sc.level > level) {
                         ssdiConnect = "\"" +sc.SSID+ "\"";
                     }
@@ -185,9 +183,7 @@ public class SwitchWifiService extends Service {
                 for (WifiConfiguration i : listwifiManager) {
                     if (i.SSID.equals(ssdiConnect )) {
                         //first time connect
-                        if (!changeWifiConnect(i, wifiManager)) {
-
-                        }
+                        changeWifiConnect(i, wifiManager);
                         break;
                     }
                 }
@@ -213,50 +209,24 @@ public class SwitchWifiService extends Service {
                     SystemClock.elapsedRealtime() + (hours * 60 * 60 * 1000),
                     (hours * 60 * 60 * 1000), alarmIntent);
         }
-
-        /*
-// Set the alarm to start at 8:30 a.m.
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 17);
-        calendar.set(Calendar.MINUTE, 30);
-// setRepeating() lets you specify a precise custom interval--in this case,
-// 20 minutes.
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                1000 * 60 * 30, alarmIntent);
-
-/*
-        ///SET ALARM OFF
-        Intent intentOff = new Intent(getApplicationContext(), AlarmOffWifiRestarterBroadcastReceiver.class);
-        PendingIntent alarmIntentOff = PendingIntent.getBroadcast(getApplicationContext(), 0, intentOff, 0);
-        // Set the alarm to start at approximately 2:00 p.m.
-        Calendar calendarOff = Calendar.getInstance();
-        calendarOff.setTimeInMillis(System.currentTimeMillis());
-        calendarOff.set(Calendar.HOUR_OF_DAY, 17);
-        calendarOff.set(Calendar.MINUTE, 50);
-
-// With setInexactRepeating(), you have to use one of the AlarmManager interval
-// constants--in this case, AlarmManager.INTERVAL_DAY.
-        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendarOff.getTimeInMillis(),AlarmManager.INTERVAL_DAY, alarmIntentOff);
-*/
     }
 
-    private boolean changeWifiConnect(WifiConfiguration i, WifiManager wifiManager){
+    private void changeWifiConnect(WifiConfiguration i, WifiManager wifiManager){
         wifiManager.disconnect();
         wifiManager.enableNetwork(i.networkId, true);
         wifiManager.reconnect();
         ServiceUtil.showToast("change wifi to :"+i.SSID, getApplicationContext());
-        if(isConnected2()){
+       // if(isConnected2()){
             WifiNotification wifiNotification =  new WifiNotification();
             wifiNotification.notify(getApplicationContext(), R.drawable.ic_wifi_app_on,
                     getApplicationContext().getString(R.string.wifi_on), i.SSID, 3,
                     getApplicationContext().getString(R.string.action_close), R.drawable.ic_stop_black_24px, new Intent("com.ar.gab.switchwifi.CloseApp"));
 
-            ServiceUtil.showToast(i.SSID +" have internet connection!", getApplicationContext());
+            /*ServiceUtil.showToast(i.SSID +" have internet connection!", getApplicationContext());
             return true;
         }
         //wifiManager.disconnect();
-        return false;
+        return false; */
     }
 
 
@@ -274,58 +244,6 @@ public class SwitchWifiService extends Service {
     }
 
 
-
-
-   /* private boolean isOnline() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
-
-
-    static public boolean isURLReachable(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnected()) {
-            try {
-                URL url = new URL("http://google.com");   // Change to "http://google.com" for www  test.
-                HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                urlc.setConnectTimeout(2 * 1000);          // 2 s.
-                urlc.connect();
-
-
-                HttpURLConnection urlcc = (HttpURLConnection) (new URL("http://www.google.com").openConnection());
-                urlcc.setRequestProperty("User-Agent", "Test");
-                urlcc.setRequestProperty("Connection", "close");
-                urlcc.setConnectTimeout(1500);
-                urlcc.connect();
-                urlcc.getResponseCode();
-
-                Socket socket = new Socket();
-                SocketAddress socketAddress = new InetSocketAddress(InetAddress.getByName("google.com"), 80);
-                socket.connect(socketAddress, 2 * 1000);
-                if (socket.isConnected()) {
-                    //connected = true;
-                    socket.close();
-                }
-
-                if (urlc.getResponseCode() == 200) {        // 200 = "OK" code (http connection is fine).
-                    Log.wtf("Connection", "Success !");
-                    return true;
-                } else {
-                    return false;
-                }
-
-            } catch (MalformedURLException e1) {
-                return false;
-            } catch (IOException e) {
-                return false;
-            }
-        }
-        return false;
-    }
-*/
 
     public boolean isConnected2() {
         boolean connected =false;

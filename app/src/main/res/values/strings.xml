@@ -4,7 +4,9 @@
     <string name="bbsdi">BBSDI: </string>
     <string name="strength">Strength: </string>
     <string name="buttonTextWifi">Select Wifi OK</string>
-    <string name="selectFavWifi">Select Favorites Wifi:</string>
+    <string name="selectFavWifi">SELECT FAVORITES WIFI:</string>
+    <string name="listFavWifi">List of Favorites Wifi:</string>
+    <string name="favWifi">Favorites Wifi:</string>
     <string name="preference_file_key">SharedPreferencesWifi</string>
     <string name="isWifiConnecting">IsWifiConnecting</string>
     <string name="wifiOK">wifiSelect</string>
@@ -32,9 +34,6 @@
     <string name="setting_backButton">Back</string>
     <string name="setting_backButton_summary">Back to main screen</string>
     <string name="setting_backButton_key">backButtonKey</string>
-
-
-
 
 
     <!-- Strings related to Settings -->
@@ -120,9 +119,16 @@
 
     <string name="wifi_on">ON </string>
     <string name="wifi_off">OFF </string>
+    <string name="wifi_off_on_title">on/off App.</string>
 
     <string name="action_restart">Restart</string>
     <string name="action_status">Status</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about">About</string>
+    <string name="title_about">About SwitchWifi App.</string>
+    <string name="message_about">This app was developed by  guilleApp@ and its use is free for everyone! </string>
+    <string name="dismiss_about">Dismiss</string>
+    <string name="ready">Done</string>
 
 
 </resources>

@@ -39,7 +39,6 @@
         <service
             android:name=".services.SwitchWifiService"
             android:enabled="true" />
-
         <service
             android:name=".services.TestWifiInternetService"
             android:enabled="true" />
@@ -53,9 +52,6 @@
                 <action android:name="com.ar.gab.switchwifi.RestartSwitchWifi" />
             </intent-filter>
         </receiver>
-
-
-
         <receiver
             android:name=".receiver.OpenAppBroadcastReceiver"
             android:enabled="true"
@@ -65,56 +61,51 @@
                 <action android:name="com.ar.gab.switchwifi.OpenApp" />
             </intent-filter>
         </receiver>
-
-    <receiver
-        android:name=".receiver.CloseAppBroadcastReceiver"
-        android:enabled="true"
-        android:exported="true"
-        android:label="Open Application">
-        <intent-filter>
-            <action android:name="com.ar.gab.switchwifi.CloseApp" />
-        </intent-filter>
-    </receiver>
-
-    <receiver
-        android:name=".receiver.RestartAppBroadcastReceiver"
-        android:enabled="true"
-        android:exported="true"
-        android:label="Open Application">
-        <intent-filter>
-            <action android:name="com.ar.gab.switchwifi.RestartApp" />
-        </intent-filter>
-    </receiver>
-
-    <receiver
-        android:name=".receiver.AlarmWifiRestarterBroadcastReceiver"
-        android:enabled="true"
-        android:exported="true"
-        android:label="Open Application">
-        <intent-filter>
-            <action android:name="com.ar.gab.switchwifi.AlarmApp" />
-        </intent-filter>
-    </receiver>
-
-    <receiver
-        android:name=".receiver.AlarmOffWifiRestarterBroadcastReceiver"
-        android:enabled="true"
-        android:exported="true"
-        android:label="Open Application">
-        <intent-filter>
-            <action android:name="com.ar.gab.switchwifi.AlarmOffApp" />
-        </intent-filter>
-    </receiver>
-
-    <receiver
-        android:name=".receiver.StatusAppBroadcastReceiver"
-        android:enabled="true"
-        android:exported="true"
-        android:label="Open Application">
-        <intent-filter>
-            <action android:name="com.ar.gab.switchwifi.StatusApp" />
-        </intent-filter>
-    </receiver>
+        <receiver
+            android:name=".receiver.CloseAppBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="Open Application">
+            <intent-filter>
+                <action android:name="com.ar.gab.switchwifi.CloseApp" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.RestartAppBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="Open Application">
+            <intent-filter>
+                <action android:name="com.ar.gab.switchwifi.RestartApp" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.AlarmWifiRestarterBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="Open Application">
+            <intent-filter>
+                <action android:name="com.ar.gab.switchwifi.AlarmApp" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.AlarmOffWifiRestarterBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="Open Application">
+            <intent-filter>
+                <action android:name="com.ar.gab.switchwifi.AlarmOffApp" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.StatusAppBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="Open Application">
+            <intent-filter>
+                <action android:name="com.ar.gab.switchwifi.StatusApp" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
