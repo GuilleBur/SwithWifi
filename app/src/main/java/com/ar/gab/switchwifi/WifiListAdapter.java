@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import utils.ServiceUtil;
+
 /**
  * Created by Guille on 4/19/2017.
  */
@@ -86,15 +88,24 @@ public class WifiListAdapter extends ArrayAdapter<Wifi>{
         responseText.append("The following were selected...\n");
         ArrayList<Wifi> wifiList = wifiItems;
         Set<String> wifiSelected = new HashSet<String>();
+
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        Set<String> ssdiListFav = sharedPref.getStringSet(context.getString(R.string.wifiOK), null);
+
         for(int i=0;i<wifiList.size();i++){
             Wifi wifi = wifiList.get(i);
             if(wifi.isChecked()){
                 responseText.append("\n" + wifi.getName());
-                wifiSelected.add(wifi.getName());
+                wifiSelected.add(wifi.getName()+"-"+ServiceUtil.nBBSDI(wifi.getBssid()));
+            }
+            else if(ServiceUtil.isWifiFavorite(wifi.getName()+"-"+ServiceUtil.nBBSDI(wifi.getBssid()) ,ssdiListFav)){
+                ssdiListFav.remove(wifi.getName()+"-"+ServiceUtil.nBBSDI(wifi.getBssid()));
             }
         }
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        wifiSelected.addAll(ssdiListFav);
+
+
         sharedPref.edit().putStringSet( context.getString(R.string.wifiOK), wifiSelected).apply();
 
         Toast.makeText(context,

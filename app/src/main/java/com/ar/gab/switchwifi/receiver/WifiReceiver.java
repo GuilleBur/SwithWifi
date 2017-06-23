@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import utils.ServiceUtil;
+
 /**
  * Created by Guille on 7/6/2017.
  */
@@ -46,8 +48,8 @@ public class WifiReceiver extends BroadcastReceiver {
 
         for(int i = 0; i < wifiList.size(); i++){
             wifiItems.add(new Wifi(wifiList.get(i).SSID,
-                    c.getString(R.string.bbsdi)+wifiList.get(i).BSSID ,
-                    c.getString(R.string.strength)+String.valueOf(wifiList.get(i).level), isWifiFavorite(wifiList.get(i).SSID, wifiFavSet)));
+                    c.getString(R.string.bbsdi)+ServiceUtil.nBBSDI(wifiList.get(i).BSSID) ,
+                    c.getString(R.string.strength)+String.valueOf(wifiList.get(i).level), isWifiFavorite(wifiList.get(i).SSID+"-"+ ServiceUtil.nBBSDI(wifiList.get(i).BSSID), wifiFavSet)));
         }
 
 

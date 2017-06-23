@@ -141,16 +141,19 @@ public class TestWifiInternetService extends Service {
 
             List<ScanResult> list = wifiManager.getScanResults();
             String ssdiCurrent = wifiInfo.getSSID();
+            String bssdiCurrent = ServiceUtil.nBBSDI(wifiInfo.getBSSID());
             String ssdiConnect = ssdiCurrent;
+            String bssdiConnect = bssdiCurrent;
 
 
             //conocer si esta conectado a una wifi favorita y tiene internet
             Iterator<ScanResult> listIterator1 = list.iterator();
             while (listIterator1.hasNext()) {
                 ScanResult sc = listIterator1.next();
-                if (isWifiFavorite(sc.SSID, ssdiListFav)){
+                if (isWifiFavorite(sc.SSID+"-"+ServiceUtil.nBBSDI(sc.BSSID), ssdiListFav)){
 
-                    if(ssdiConnect.equals("\"" + sc.SSID + "\"") &&  ssdiConnect.equals(ssdiCurrent)  &&  !isConnected2()){
+                    if((ssdiConnect.equals("\"" + sc.SSID + "\"") &&  bssdiConnect.equals(ServiceUtil.nBBSDI(sc.BSSID)))
+                            && ssdiConnect.equals(ssdiCurrent)  &&  !isConnected2()){
                         noIternetInFavoriteWifi = true;
                         ServiceUtil.showToast("Sorry, NO INTERNET!! on Wifi favorite:" + ssdiCurrent, getApplicationContext());
                         //ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
@@ -162,7 +165,7 @@ public class TestWifiInternetService extends Service {
             //conectarse si hay que cambiar de wifi o si la wifi favorita no tiene wifi
             if (noIternetInFavoriteWifi ) {
                 for (WifiConfiguration i : listwifiManager) {
-                    if (i.SSID.equals(ssdiConnect)) {
+                    if (i.SSID.equals(ssdiConnect) ) {
                         //first time connect
                         //showToast("Sorry connect 1st, NO INTERNET!! on Wifi:" + i.SSID);
                         wifiManager.setWifiEnabled(false);

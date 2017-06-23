@@ -7,6 +7,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.Set;
+
 /**
  * Created by Guille on 15/6/2017.
  */
@@ -36,6 +38,23 @@ public class ServiceUtil {
             }
         });
     }
+    public static boolean isWifiFavorite (String ssdi, Set<String> ssdiListFav){
+        boolean isWifiFav = false;
+        if(ssdiListFav!=null){
+            for (String wifiFav : ssdiListFav) {
+                if(wifiFav.equals(ssdi)){
+                    isWifiFav = true;
+                    break;
+                }
+            }
+        }
+        return isWifiFav;
+    }
+
+    public static String nBBSDI(String bbsdi){
+        return bbsdi.replaceFirst("BBSDI:", "");
+    }
+
 
 }
 

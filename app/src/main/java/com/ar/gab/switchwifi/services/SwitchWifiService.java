@@ -156,13 +156,16 @@ public class SwitchWifiService extends Service {
             List<ScanResult> list = wifiManager.getScanResults();
             int level = -100;
             String ssdiCurrent = wifiInfo.getSSID();
+            String bssdiCurrent = ServiceUtil.nBBSDI(wifiInfo.getBSSID());
             String ssdiConnect = ssdiCurrent;
+            String bssdiConnect = bssdiCurrent;
             Iterator<ScanResult> listIterator = list.iterator();
 
             //conocer level actual de la wifi
             while (listIterator.hasNext()) {
                 ScanResult sc = listIterator.next();
-                if (ssdiCurrent.equals("\"" + sc.SSID + "\"") && isWifiFavorite(sc.SSID, ssdiListFav)) {
+                if ((ssdiCurrent.equals("\"" + sc.SSID + "\"")  &&  bssdiCurrent.equals(ServiceUtil.nBBSDI(sc.BSSID)))
+                        && isWifiFavorite(sc.SSID+"-"+ServiceUtil.nBBSDI(sc.BSSID), ssdiListFav)) {
                     level = sc.level;
                 }
             }
@@ -170,18 +173,20 @@ public class SwitchWifiService extends Service {
             Iterator<ScanResult> listIterator1 = list.iterator();
             while (listIterator1.hasNext()) {
                 ScanResult sc = listIterator1.next();
-                if (isWifiFavorite(sc.SSID, ssdiListFav)){
-                    if (!ssdiCurrent.equals("\"" + sc.SSID + "\"") && sc.level > level) {
+                if (isWifiFavorite(sc.SSID+"-"+ServiceUtil.nBBSDI(sc.BSSID), ssdiListFav)){
+                    if (!(ssdiCurrent.equals("\"" + sc.SSID + "\"") && bssdiCurrent.equals(ServiceUtil.nBBSDI(sc.BSSID))) && sc.level > level) {
                         ssdiConnect = "\"" +sc.SSID+ "\"";
+                        bssdiConnect = ServiceUtil.nBBSDI(sc.BSSID);
+                        level = sc.level;
                     }
 
                 }
             }
 
             //conectarse si hay que cambiar de wifi o si la wifi favorita no tiene wifi
-            if (!ssdiConnect.equals(ssdiCurrent) || noIternetInFavoriteWifi ) {
+            if (!(ssdiConnect.equals(ssdiCurrent) && bssdiConnect.equals(bssdiCurrent)) || noIternetInFavoriteWifi ) {
                 for (WifiConfiguration i : listwifiManager) {
-                    if (i.SSID.equals(ssdiConnect )) {
+                    if (i.SSID.equals(ssdiConnect ) ) {
                         //first time connect
                         changeWifiConnect(i, wifiManager);
                         break;

@@ -31,6 +31,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import utils.ServiceUtil;
+
 public class WifiListActivity extends Activity {
 
     private final int REQUEST_PERMISSION_PHONE_STATE=1;
@@ -158,8 +160,8 @@ public class WifiListActivity extends Activity {
 
             for(int i = 0; i < wifiList.size(); i++){
                 wifiItems.add(new Wifi(wifiList.get(i).SSID,
-                                        getString(R.string.bbsdi)+wifiList.get(i).BSSID ,
-                        getString(R.string.strength)+String.valueOf(wifiList.get(i).level), isWifiFavorite(wifiList.get(i).SSID, wifiFavSet)));
+                                        getString(R.string.bbsdi)+ServiceUtil.nBBSDI(wifiList.get(i).BSSID) ,
+                        getString(R.string.strength)+String.valueOf(wifiList.get(i).level), isWifiFavorite(wifiList.get(i).SSID+"-"+ServiceUtil.nBBSDI(wifiList.get(i).BSSID), wifiFavSet)));
             }
 
 
@@ -200,20 +202,27 @@ public class WifiListActivity extends Activity {
     private void changeSelectWifi(){
         StringBuffer responseText = new StringBuffer();
         responseText.append("The following were selected...\n");
+
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        Set<String> ssdiListFav = sharedPref.getStringSet(context.getString(R.string.wifiOK), null);
+
         ArrayList<Wifi> wifiList = adapter.wifiItems;
         Set<String> wifiSelected = new HashSet<String>();
         for(int i=0;i<wifiList.size();i++){
             Wifi wifi = wifiList.get(i);
             if(wifi.isChecked()){
                 responseText.append("\n" + wifi.getName());
-                wifiSelected.add(wifi.getName());
+                wifiSelected.add(wifi.getName()+"-"+ServiceUtil.nBBSDI(wifi.getBssid()));
+            }
+            else if(ServiceUtil.isWifiFavorite(wifi.getName()+"-"+ServiceUtil.nBBSDI(wifi.getBssid()),ssdiListFav)){
+                ssdiListFav.remove(wifi.getName()+"-"+ServiceUtil.nBBSDI(wifi.getBssid()));
             }
 
         }
+        wifiSelected.addAll(ssdiListFav);
 
-        Context context = getApplicationContext();
-        SharedPreferences sharedPref = context.getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         sharedPref.edit().putStringSet( getString(R.string.wifiOK), wifiSelected).commit();
 
         Toast.makeText(getApplicationContext(),

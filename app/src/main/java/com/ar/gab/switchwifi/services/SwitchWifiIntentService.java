@@ -80,7 +80,7 @@ public class SwitchWifiIntentService extends IntentService {
             //conocer level actual
             while (listIterator.hasNext()) {
                 ScanResult sc = listIterator.next();
-                if(ssdiCurrent.equals("\"" + sc.SSID + "\"") && isWifiFavorite(sc.SSID, ssdiListFav)){
+                if(ssdiCurrent.equals("\"" + sc.SSID + "\"") && isWifiFavorite(sc.SSID+"-"+ServiceUtil.nBBSDI(sc.BSSID), ssdiListFav)){
                     level = sc.level;
                 }
 
@@ -89,7 +89,7 @@ public class SwitchWifiIntentService extends IntentService {
             Iterator<ScanResult> listIterator1 = list.iterator();
             while (listIterator1.hasNext()) {
                 ScanResult sc = listIterator1.next();
-                if( isWifiFavorite(sc.SSID, ssdiListFav) && !ssdiCurrent.equals("\"" + sc.SSID + "\"") && sc.level>level ) {
+                if( isWifiFavorite(sc.SSID+"-"+ServiceUtil.nBBSDI(sc.BSSID), ssdiListFav) && !ssdiCurrent.equals("\"" + sc.SSID + "\"") && sc.level>level ) {
                      ssdiConnect = sc.SSID;
                     //showToast("current wifi:"+ssdiConnect+" level:"+sc.level);
                     //Toast.makeText(getApplicationContext(), "current wifi:"+ssdiConnect+" level:"+sc.level, Toast.LENGTH_LONG).show();
