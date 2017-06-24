@@ -52,7 +52,10 @@ public class ServiceUtil {
     }
 
     public static String nBBSDI(String bbsdi){
-        return bbsdi.replaceFirst("BBSDI:", "");
+        if(bbsdi!=null){
+            return bbsdi.replaceFirst("BBSDI:", "");
+        }
+        return null;
     }
 
 
