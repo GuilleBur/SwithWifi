@@ -103,7 +103,9 @@ public class WifiListAdapter extends ArrayAdapter<Wifi>{
                 ssdiListFav.remove(wifi.getName()+"-"+ServiceUtil.nBBSDI(wifi.getBssid()));
             }
         }
-        wifiSelected.addAll(ssdiListFav);
+        if(ssdiListFav!=null) {
+            wifiSelected.addAll(ssdiListFav);
+        }
 
 
         sharedPref.edit().putStringSet( context.getString(R.string.wifiOK), wifiSelected).apply();
