@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/holo_red_light"
-        android:textSize="30sp"/>
+        android:textSize="27sp"/>
 
     <TextView android:id="@android:id/summary"
         android:layout_width="wrap_content"

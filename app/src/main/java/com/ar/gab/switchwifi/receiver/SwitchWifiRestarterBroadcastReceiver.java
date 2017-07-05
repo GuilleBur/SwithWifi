@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.service.notification.NotificationListenerService;
 import android.util.Log;
 
 import com.ar.gab.switchwifi.R;
@@ -24,6 +25,7 @@ public class SwitchWifiRestarterBroadcastReceiver extends BroadcastReceiver {
         TestWifiInternetService mTestWifiInternetService = new TestWifiInternetService();
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         boolean closeApp = sharedPref.getBoolean(context.getString(R.string.closeApp), false);
+
 
         //if user not turn off the application
         if(!closeApp && !ServiceUtil.isMyServiceRunning(mSwitchWifiService.getClass(), context)){

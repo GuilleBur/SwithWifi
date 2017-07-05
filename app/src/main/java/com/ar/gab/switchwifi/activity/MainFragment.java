@@ -4,24 +4,20 @@ package com.ar.gab.switchwifi.activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.IntentFilter;
-import android.graphics.Typeface;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 
 
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.SpannableString;
-import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ar.gab.switchwifi.R;
 import com.ar.gab.switchwifi.receiver.WifiReceiver;
@@ -66,9 +62,12 @@ public class MainFragment extends Fragment {
 
 
         SpannableString spanString = new SpannableString(getString(R.string.selectFavWifi));
-        spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
-        textView.setTextSize(19);
+        //spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
+        textView.setTextSize(27);
         textView.setText(spanString);
+        textView.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.holo_red_light));
+
+
 
         textView.setText(spanString);
         listView.addHeaderView(textView);
@@ -103,7 +102,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getFragmentManager()
-                        .beginTransaction().replace(R.id.your_placeholder, new WifiSettingsActivity())
+                        .beginTransaction().replace(R.id.your_placeholder, new WifiSettingsPreferenceFragment(), getString(R.string.settingFragment))
                         .addToBackStack(null).commit();
 
 

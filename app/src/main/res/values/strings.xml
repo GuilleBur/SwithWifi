@@ -4,9 +4,10 @@
     <string name="bbsdi">BBSDI: </string>
     <string name="strength">Strength: </string>
     <string name="buttonTextWifi">Select Wifi OK</string>
-    <string name="selectFavWifi">SELECT FAVORITES WIFI:</string>
+    <string name="selectFavWifi">Select Favorites WIFI:</string>
     <string name="listFavWifi">List of Favorites Wifi:</string>
-    <string name="favWifi">Favorites Wifi:</string>
+    <string name="favWifi">Favorites Wifi</string>
+    <string name="currentWifi">Current Wifi Info.</string>
     <string name="preference_file_key">SharedPreferencesWifi</string>
     <string name="isWifiConnecting">IsWifiConnecting</string>
     <string name="wifiOK">wifiSelect</string>
@@ -126,9 +127,12 @@
     <string name="title_activity_about">AboutActivity</string>
     <string name="about">About</string>
     <string name="title_about">About SwitchWifi App.</string>
+    <string name="title_currentWifi">Current Wifi Information</string>
     <string name="message_about">This app was developed by  guilleApp@ and its use is free for everyone! </string>
     <string name="dismiss_about">Dismiss</string>
     <string name="ready">Done</string>
-
+    <string name="settingFragment">SettingFragment</string>
+    <string name="wifiConnectionInfo">-bSSID:-c%1$s -l -bIP:-c%2$s -l -bMAC:-c%3$s -l -bStrenght:-c%4$d -l </string>
+    <string name="mainFragment">mainFragment</string>
 
 </resources>

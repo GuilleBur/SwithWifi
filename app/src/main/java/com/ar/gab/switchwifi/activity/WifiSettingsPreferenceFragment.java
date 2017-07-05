@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.os.IBinder;
 import android.preference.Preference;
 
@@ -11,6 +12,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,9 @@ import com.ar.gab.switchwifi.R;
 import com.ar.gab.switchwifi.services.SwitchWifiService;
 import com.ar.gab.switchwifi.services.TestWifiInternetService;
 
-public class WifiSettingsActivity extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+import utils.RunnableWifi;
+
+public class WifiSettingsPreferenceFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
 
     SwitchWifiService mService;
@@ -172,6 +176,9 @@ public class WifiSettingsActivity extends PreferenceFragment implements SharedPr
         backbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 getFragmentManager().popBackStack();
+                MainFragment mainFragment = (MainFragment) getFragmentManager().findFragmentByTag(getString(R.string.mainFragment));
+                SwipeRefreshLayout swipeContainer = mainFragment.swipeContainer;// (SwipeRefreshLayout) settingFragment.getActivity().findViewById(R.id.swipeContainer);
+                final boolean b = new Handler().postDelayed(new RunnableWifi(swipeContainer, getActivity(), getActivity()), 100);
             }
         });
 

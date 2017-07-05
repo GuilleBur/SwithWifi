@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 //Put the main fragment
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.your_placeholder, new MainFragment())
+                    .add(R.id.your_placeholder, new MainFragment(), getString(R.string.mainFragment))
                     .commit();
         }
 
@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
             startService(mServiceIntent);
         }
 
+
+//get notification
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         WifiNotification wifiNotification =  new WifiNotification();
@@ -192,6 +194,11 @@ public class MainActivity extends AppCompatActivity {
         if(id == R.id.list_fav_wifi){
             DialogFragment listFavWifiFragment = new ListWifiFavoriteFragment();
             listFavWifiFragment.show(getFragmentManager(), "fav");
+            return true;
+        }
+        if(id == R.id.current_wifi){
+            DialogFragment currentWifiInfo = new CurrentWifiFragment();
+            currentWifiInfo.show(getFragmentManager(), "currentWifiInfo");
             return true;
         }
 
