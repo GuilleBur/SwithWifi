@@ -26,7 +26,7 @@ public class AboutFragment extends DialogFragment {
                 .setTitle(R.string.title_about)
                 .setPositiveButton(R.string.dismiss_about, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        ServiceUtil.showToast("Bye, good luck!", getActivity());
+                        //ServiceUtil.showToast("Bye, good luck!", getActivity());
                     }
                 });
         // Create the AlertDialog object and return it

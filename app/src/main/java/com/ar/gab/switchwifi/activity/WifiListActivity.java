@@ -70,7 +70,7 @@ public class WifiListActivity extends Activity {
             case REQUEST_PERMISSION_PHONE_STATE:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(WifiListActivity.this, "Permission Granted!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(WifiListActivity.this, "Permission Granted!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(WifiListActivity.this, "Permission Denied!", Toast.LENGTH_SHORT).show();
                 }
@@ -111,7 +111,7 @@ public class WifiListActivity extends Activity {
                 requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION, REQUEST_PERMISSION_PHONE_STATE);
             }
         } else {
-            Toast.makeText(WifiListActivity.this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(WifiListActivity.this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
         }
     }
 

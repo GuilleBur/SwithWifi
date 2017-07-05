@@ -40,7 +40,7 @@ public class CurrentWifiFragment extends DialogFragment {
             builder.setTitle(R.string.title_currentWifi)
                         .setPositiveButton(R.string.dismiss_about, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                ServiceUtil.showToast("Bye, good luck!", getActivity());
+                //ServiceUtil.showToast("Bye, good luck!", getActivity());
             }
         });
         if(wifiInfo!=null){

@@ -126,8 +126,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
     @Override
     public void onRequestPermissionsResult(
             int requestCode,
@@ -165,18 +163,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /*private boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                Log.i ("isMyServiceRunning?", true+"");
-                return true;
-            }
-        }
-        Log.i ("isMyServiceRunning?", false+"");
-        return false;
-    }*/
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -204,38 +190,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   /* class RunnableWifi implements Runnable {
-
-        @Override
-        public void run() {
-            //FToast.makeText(MainActivity.this, "Starting Scan...", Toast.LENGTH_SHORT).show();
-            checkWifiPermission();
-            swipeContainer.setRefreshing(false);
-        }
-
-    }*/
-
-
 
     }

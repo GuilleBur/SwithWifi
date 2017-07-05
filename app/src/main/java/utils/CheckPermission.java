@@ -69,7 +69,7 @@ public class CheckPermission {
             }
 
         } else {
-            Toast.makeText(context, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
             permission = true;
         }
         return permission;
